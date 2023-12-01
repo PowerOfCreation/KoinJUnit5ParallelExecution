@@ -1,15 +1,15 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Test2 : BaseTest() {
+class Test3 : BaseTest() {
     @Test
     fun myTest() {
         val databaseConnector: DatabaseConnector = scope?.get<DatabaseConnector>() ?: return
 
         assertEquals(1, databaseConnector.getValue())
 
-        databaseConnector.setValue(4)
+        databaseConnector.setValue(3)
 
-        assertEquals(4, databaseConnector.getValue())
+        assertEquals(3, databaseConnector.getValue())
     }
 }
