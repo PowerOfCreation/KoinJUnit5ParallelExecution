@@ -1,14 +1,14 @@
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInstance
+import org.koin.core.component.KoinScopeComponent
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
-import org.koin.test.KoinTest
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class BaseTest : KoinTest {
+abstract class BaseTest : KoinScopeComponent {
 
     companion object {
         private val lock = Any()
@@ -16,7 +16,7 @@ abstract class BaseTest : KoinTest {
         var isKoinSetup = false
     }
 
-    var scope: Scope? = null
+    override lateinit var scope: Scope
 
     private val module = module {
         scope(named(Thread.currentThread().name)) {
